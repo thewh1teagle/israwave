@@ -11,12 +11,11 @@ from nakdimon_ort import Nakdimon
 import sys
 
 if __name__ == '__main__':
-    speech_model = IsraWave(sys.argv[1], sys.argv[2])
-    niqqud_model = Nakdimon(sys.argv[3])
-    text = sys.argv[4]
-    out_path = sys.argv[5]
+    speech_model_path, espeak_data_path = sys.argv[1], sys.argv[2]
+    niqqud_model_path, text, out_path = sys.argv[3], sys.argv[4], sys.argv[5]
     
+    speech_model = IsraWave(speech_model_path, espeak_data_path)
+    niqqud_model = Nakdimon(niqqud_model_path)
     text = niqqud_model.compute(text)
     waveform = speech_model.create(text)
     waveform.save(out_path)
-    
