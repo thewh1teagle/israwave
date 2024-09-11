@@ -16,3 +16,5 @@ venv/
 espeak-ng-data/
 *.zip
 *.m4a
+*.mp4
+*.onnx*
