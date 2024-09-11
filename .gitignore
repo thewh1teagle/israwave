@@ -11,3 +11,4 @@ wheels/
 output/
 *.onnx
 venv/
+.DS_Store

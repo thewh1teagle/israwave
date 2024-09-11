@@ -9,6 +9,7 @@ import numpy as np
 import onnxruntime
 import soundfile as sf
 import time
+from nakdimon_ort import Nakdimon
 
 from israwave import OptiSpeechONNXModel
 
@@ -48,8 +49,10 @@ def main():
     # Load model
     onnx_providers = ONNX_CUDA_PROVIDERS if args.cuda else ONNX_CPU_PROVIDERS
     model = OptiSpeechONNXModel.from_onnx_file_path(args.onnx_path, onnx_providers=onnx_providers)
+    diacritics_model = Nakdimon('nakdimon.onnx')
 
     # Process text
+    args.text = diacritics_model.compute(args.text)
     inputs = model.prepare_input(
         args.text,
         d_factor=args.d_factor,
