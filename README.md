@@ -2,6 +2,10 @@
 
 Mission to create a Hebrew TTS model as powerful and user-friendly as WaveNet
 
+## Samples
+
+See example audio [here](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/israwave.wav)
+
 ## Usage
 
 ```console
