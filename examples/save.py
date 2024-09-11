@@ -3,7 +3,7 @@ wget https://github.com/thewh1teagle/optispeech/releases/download/v0.1.0/epoch-1
 wget https://github.com/thewh1teagle/optispeech/releases/download/v0.1.0/espeak-ng-data.7z
 wget https://github.com/thewh1teagle/nakdimon-ort/releases/download/v0.1.0/nakdimon.onnx
 
-python3 usage.py israwave.onnx espeak-ng-data nakdimon.onnx "שלום! מה קורה?" output.wav
+python3 save.py israwave.onnx espeak-ng-data nakdimon.onnx "שלום! מה קורה?" output.wav
 """
 
 from israwave import IsraWave

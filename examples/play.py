@@ -3,7 +3,7 @@ wget https://github.com/thewh1teagle/optispeech/releases/download/v0.1.0/epoch-1
 wget https://github.com/thewh1teagle/optispeech/releases/download/v0.1.0/espeak-ng-data.7z
 wget https://github.com/thewh1teagle/nakdimon-ort/releases/download/v0.1.0/nakdimon.onnx
 
-python3 usage.py israwave.onnx espeak-ng-data nakdimon.onnx "שלום! מה קורה?"
+python3 play.py israwave.onnx espeak-ng-data nakdimon.onnx "שלום! מה קורה?"
 """
 
 from israwave import IsraWave
@@ -12,7 +12,7 @@ import sys
 
 if __name__ == '__main__':
     speech_model_path, espeak_data_path = sys.argv[1], sys.argv[2]
-    niqqud_model_path, text, out_path = sys.argv[3], sys.argv[4], sys.argv[5]
+    niqqud_model_path, text = sys.argv[3], sys.argv[4]
     
     speech_model = IsraWave(speech_model_path, espeak_data_path)
     niqqud_model = Nakdimon(niqqud_model_path)

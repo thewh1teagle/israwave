@@ -33,9 +33,9 @@ class IsraWave:
         """
         inputs = self.speech_model.prepare_input(
             text,
-            d_factor=self.d_factor,
-            p_factor=self.p_factor,
-            e_factor=self.e_factor,
+            d_factor=d_factor,
+            p_factor=p_factor,
+            e_factor=e_factor,
             lang='he'
         )
         outputs = self.speech_model.synthesise(inputs)
