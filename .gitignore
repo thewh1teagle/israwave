@@ -10,3 +10,4 @@ wheels/
 .venv
 output/
 *.onnx
+venv/
