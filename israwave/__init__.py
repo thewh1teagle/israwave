@@ -2,6 +2,7 @@ from israwave.values import FloatArray
 from .model import Model
 import soundfile as sf
 import sounddevice as sd
+import os
 
 class WaveForm:
     def __init__(self, waveform: FloatArray, sample_rate: int) -> None:
@@ -9,6 +10,8 @@ class WaveForm:
         self.sample_rate = sample_rate
     
     def save(self, path: str):
+        if os.path.exists(path):
+            os.remove(path)
         sf.write(path, self.waveform, self.sample_rate)
         
     def play(self):
