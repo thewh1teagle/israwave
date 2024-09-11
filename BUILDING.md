@@ -20,3 +20,5 @@ python -m twine upload dist/*
 
 _Add `--repository testpypi` to upload to test repository_
 
+
+See https://bootphon.github.io/phonemizer/install.html
