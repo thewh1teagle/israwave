@@ -1,10 +1,7 @@
 import dataclasses
 from dataclasses import dataclass
 from typing import TypeAlias
-
 import numpy as np
-
-
 
 FloatArray: TypeAlias = np.ndarray[np.float32]
 IntArray: TypeAlias = np.ndarray[np.int64]

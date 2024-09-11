@@ -1,10 +1,9 @@
 [project]
 name = "israwave"
-version = "0.1.0"
-description = "Add your description here"
-authors = [
-    { name = "thewh1teagle", email = "61390950+thewh1teagle@users.noreply.github.com" }
-]
+description = "Hebrew text to speech on the edge"
+readme = "README.md"
+version = "0.1.5"
+authors = [{ name = "thewh1teagle" }]
 dependencies = [
     "onnxruntime>=1.19.2",
     "numpy>=2.1.1",
@@ -12,19 +11,15 @@ dependencies = [
     "nakdimon-ort>=0.1.5",
     "piper-phonemize-cross>=1.2.1",
 ]
-readme = "README.md"
-requires-python = ">= 3.8"
+
+[project.urls]
+home = "https://github.com/thewh1teagle/israwave"
+
+[project.optional-dependencies]
+dev = ["tox", "pre-commit", "bump2version"]
+test = ["pytest"]
+build = ["twine", "build"]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[tool.rye]
-managed = true
-dev-dependencies = []
-
-[tool.hatch.metadata]
-allow-direct-references = true
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/israwave"]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]

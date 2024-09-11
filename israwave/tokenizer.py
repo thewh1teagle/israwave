@@ -1,16 +1,14 @@
-from os import getenv
 import re
 from .symbols import phonemes_to_ids
 
 WHITESPACE_RE = re.compile(r"\s+")
 
 class IPATokenizer:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, espeak_data_path = None) -> None:
+        self.espeak_data_path = espeak_data_path
     
     def preprocess_text(self, text, _language):
-        text = re.sub(WHITESPACE_RE, " ", text)
-        return text
+        return self.collapse_whitespace(text)
     
     def collapse_whitespace(self, text):
         text = re.sub(WHITESPACE_RE, " ", text)
@@ -30,8 +28,7 @@ class IPATokenizer:
         # Preprocess
         text = self.preprocess_text(text, language)
         # Phonemize        
-        espeak_data_path = getenv('ESPEAK_DATA_PATH')
-        phonemes = phonemize_espeak(text, language, data_path=espeak_data_path)
+        phonemes = phonemize_espeak(text, language, data_path=self.espeak_data_path)
         return phonemes, text
     
     def tokenize(self, text, language):

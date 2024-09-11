@@ -12,3 +12,5 @@ output/
 *.onnx
 venv/
 .DS_Store
+*.wav
+espeak-ng-data/

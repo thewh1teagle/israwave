@@ -1,58 +1,30 @@
-import argparse
 import json
 import logging
-from dataclasses import dataclass
-from pathlib import Path
 from time import perf_counter
-
 import numpy as np
 import onnxruntime
-import soundfile as sf
-import time
-
 from israwave.tokenizer import IPATokenizer
-
 from .values import InferenceInputs, InferenceOutputs
 
 log = logging.getLogger("infer")
-ONNX_CUDA_PROVIDERS = [("CUDAExecutionProvider", {"cudnn_conv_algo_search": "DEFAULT"}), "CPUExecutionProvider"]
-ONNX_CPU_PROVIDERS = [
-    "CPUExecutionProvider",
-]
 
+class Model:
 
-@dataclass
-class OptiSpeechONNXModel:
-    session: onnxruntime.InferenceSession
-    name: str
-    sample_rate: int
-    inference_args: dict[str, int]
-    speakers: bool
-    languages: bool
-    tokenizer: IPATokenizer
+    def __init__(self, onnx_path: str, espeak_data_path: str, onnx_providers: list[str] = ["CPUExecutionProvider"]):
+        session = onnxruntime.InferenceSession(onnx_path, providers=onnx_providers)
+        meta = session.get_modelmeta()
+        infer_params = json.loads(meta.custom_metadata_map["inference"])
+        self.tokenizer=IPATokenizer(espeak_data_path)
+        self.session=session
+        self.name=infer_params["name"]
+        self.sample_rate=infer_params["sample_rate"]
+        self.inference_args=infer_params["inference_args"]
+        self.speakers=infer_params["speakers"]
+        self.languages=infer_params["languages"]
 
     def __post_init__(self):
         self.is_multispeaker = len(self.speakers) > 1
         self.is_multilanguage = len(self.languages) > 1
-
-    @classmethod
-    def from_onnx_session(cls, session: onnxruntime.InferenceSession):
-        meta = session.get_modelmeta()
-        infer_params = json.loads(meta.custom_metadata_map["inference"])
-        return cls(
-            tokenizer=IPATokenizer(),
-            session=session,
-            name=infer_params["name"],
-            sample_rate=infer_params["sample_rate"],
-            inference_args=infer_params["inference_args"],
-            speakers=infer_params["speakers"],
-            languages=infer_params["languages"],
-        )
-
-    @classmethod
-    def from_onnx_file_path(cls, onnx_path: str, onnx_providers: list[str] = ONNX_CPU_PROVIDERS):
-        session = onnxruntime.InferenceSession(onnx_path, providers=onnx_providers)
-        return cls.from_onnx_session(session)
 
     def prepare_input(
         self,
@@ -62,33 +34,12 @@ class OptiSpeechONNXModel:
         d_factor: float|None=None,
         p_factor: float|None=None,
         e_factor: float|None=None,
-        split_sentences: bool = True
     ) -> InferenceInputs:
-        if self.is_multispeaker:
-            if speaker is None:
-                sid = 0
-            elif type(speaker) is str:
-                try:
-                    sid = self.speakers.index(speaker)
-                except IndexError:
-                    raise ValueError(f"A speaker with the given name `{speaker}` was not found in speaker list")
-            elif type(speaker) is int:
-                sid = speaker
-        else:
-            sid = None
-        if self.is_multilanguage:
-            if lang is None:
-                lang = self.languages[0]
-            try:
-                lid = self.languages.index(lang)
-            except IndexError:
-                raise ValueError(f"A language with the given name `{lang}` was not found in language list")
-        else:
-            lid = None
+        sid = None
+        lid = None
         phids, clean_text = self.tokenizer.tokenize(text=text, language=lang)
         
-        if not split_sentences:
-            phids = [phids]
+        phids = [phids]
         input_ids = []
         lengths = []
         for phid in phids:
@@ -131,12 +82,6 @@ class OptiSpeechONNXModel:
             x_lengths=x_lengths,
             scales=np.array([d_factor, p_factor, e_factor], dtype=np.float32),
         )
-        if self.is_multispeaker:
-            assert sids is not None, "Speaker IDs are required for multi speaker models"
-            inputs["sids"] = np.array(sids, dtype=np.int64)
-        if self.is_multilanguage:
-            assert lids is not None, "Language IDs are required for multi language models"
-            inputs["lids"] = np.array(lids, dtype=np.int64)
         t0 = perf_counter()
         wav, wav_lengths, durations = self.session.run(None, inputs)
         t_infer = perf_counter() - t0
