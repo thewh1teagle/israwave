@@ -4,7 +4,7 @@ from time import perf_counter
 import numpy as np
 import onnxruntime
 from israwave.tokenizer import IPATokenizer
-from .values import InferenceInputs, InferenceOutputs
+from .tensors import InferenceInputs, InferenceOutputs
 
 log = logging.getLogger("infer")
 

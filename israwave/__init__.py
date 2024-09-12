@@ -1,4 +1,4 @@
-from israwave.values import FloatArray
+from israwave.tensors import FloatArray
 from .model import Model
 import soundfile as sf
 import sounddevice as sd
