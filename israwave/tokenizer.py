@@ -1,5 +1,6 @@
 import re
 from .symbols import phonemes_to_ids
+import logging
 
 WHITESPACE_RE = re.compile(r"\s+")
 
@@ -29,6 +30,7 @@ class IPATokenizer:
         text = self.preprocess_text(text, language)
         # Phonemize        
         phonemes = phonemize_espeak(text, language, data_path=self.espeak_data_path)
+        logging.debug(f"phonemes: {phonemes} text: {text}")
         return phonemes, text
     
     def tokenize(self, text, language):
