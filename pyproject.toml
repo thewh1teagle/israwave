@@ -10,7 +10,8 @@ dependencies = [
     "soundfile>=0.12.1",
     "sounddevice>=0.5.0",
     "nakdimon-ort>=0.1.5",
-    "piper-phonemize-fork>=1.2.0",
+    'piper-phonemize-fork>=1.2.0 ; platform_system != "Linux"',
+    'piper-phonemize-cross>=1.2.1 ; platform_system == "Linux"',
 ]
 
 [project.urls]
