@@ -5,17 +5,17 @@ import sounddevice as sd
 import os
 
 class WaveForm:
-    def __init__(self, waveform: FloatArray, sample_rate: int) -> None:
-        self.waveform =  waveform
+    def __init__(self, samples: FloatArray, sample_rate: int) -> None:
+        self.samples =  samples
         self.sample_rate = sample_rate
     
     def save(self, path: str):
         if os.path.exists(path):
             os.remove(path)
-        sf.write(path, self.waveform, self.sample_rate)
+        sf.write(path, self.samples, self.sample_rate)
         
     def play(self):
-        sd.play(self.waveform, self.sample_rate)
+        sd.play(self.samples, self.sample_rate)
         sd.wait()
 
 class IsraWave:
