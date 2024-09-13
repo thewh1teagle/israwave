@@ -5,7 +5,6 @@ wget https://github.com/thewh1teagle/optispeech/releases/download/v0.1.0/espeak-
 wget https://github.com/thewh1teagle/nakdimon-ort/releases/download/v0.1.0/nakdimon.onnx
 
 python save_segments.py israwave.onnx espeak-ng-data nakdimon.onnx input.txt output.wav
-
 """
 
 import sys
@@ -15,17 +14,6 @@ from israwave import IsraWave
 from israwave.segment import SegmentExtractor
 from nakdimon_ort import Nakdimon
 from pathlib import Path
-
-
-def create_silence(duration, sample_rate):
-    """Create a silence array."""
-    num_samples = int(duration * sample_rate)
-    return np.zeros(num_samples)
-
-def concatenate_waveforms(waveforms, sample_rate):
-    """Concatenate a list of waveforms into a single waveform."""
-    concatenated_waveform = np.concatenate(waveforms)
-    return concatenated_waveform
 
 if __name__ == '__main__':
     speech_model_path, espeak_data_path = sys.argv[1], sys.argv[2]
@@ -49,9 +37,9 @@ if __name__ == '__main__':
             sample_rate = waveform.sample_rate
         
         waveforms.append(waveform.samples)
-        silence = create_silence(segment.next_pause, sample_rate)
+        silence = np.zeros(int(segment.next_pause * sample_rate))
         waveforms.append(silence)
 
-    final_waveform = concatenate_waveforms(waveforms, sample_rate)
-    
+    # Join segments into a single waveform
+    final_waveform = np.concatenate(waveforms)
     sf.write(out_path, final_waveform, sample_rate)
