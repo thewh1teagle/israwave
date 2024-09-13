@@ -8,7 +8,7 @@ IntArray: TypeAlias = np.ndarray[np.int64]
 
 
 @dataclass
-class BaseValueContainer:
+class BaseTensorContainer:
 
     def as_tuple(self):
         return dataclasses.astuple(self)
@@ -29,7 +29,7 @@ class BaseValueContainer:
 
 
 @dataclass(kw_only=True)
-class InferenceInputs(BaseValueContainer):
+class InferenceInputs(BaseTensorContainer):
     clean_text: str
     x: IntArray
     x_lengths: IntArray
@@ -48,7 +48,7 @@ class InferenceInputs(BaseValueContainer):
 
 
 @dataclass(kw_only=True)
-class InferenceOutputs(BaseValueContainer):
+class InferenceOutputs(BaseTensorContainer):
     wav: FloatArray
     wav_lengths: FloatArray
     latency: int
