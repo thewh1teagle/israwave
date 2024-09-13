@@ -41,10 +41,10 @@ class SegmentExtractor:
                 elif punctuation == '?':
                     segments.append(Segment(text=f"{sentence}{punctuation}", next_pause=self.question_pause))
                 elif punctuation == '\n':
-                    segments.append(Segment(text=f"{sentence}{punctuation}", next_pause=self.new_line_pause))
+                    segments.append(Segment(text=f"{sentence}{punctuation}.", next_pause=self.new_line_pause))
                 else:
                     segments.append(Segment(text=f"{sentence}{punctuation}", next_pause=self.default_pause))
         last_sentence = sentences[-1].strip()
         if last_sentence:
-            segments.append(Segment(text=last_sentence, next_pause=self.default_pause))
+            segments.append(Segment(text=f"{last_sentence}.", next_pause=self.default_pause))
         return segments
