@@ -5,7 +5,7 @@ wget https://github.com/thewh1teagle/optispeech/releases/download/v0.1.0/espeak-
 wget https://github.com/thewh1teagle/nakdimon-ort/releases/download/v0.1.0/nakdimon.onnx
 
 
-python3 play.py israwave.onnx espeak-ng-data nakdimon.onnx 'תגידו, גנבו לכם פעם את האוטו ופשוט ידעתם שאין טעם להגיש תלונה במשטרה?'
+python play.py israwave.onnx espeak-ng-data nakdimon.onnx "תגידו, גנבו לכם פעם את האוטו ופשוט ידעתם שאין טעם להגיש תלונה במשטרה?"
 """
 
 from israwave import IsraWave

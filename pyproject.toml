@@ -8,8 +8,9 @@ dependencies = [
     "onnxruntime>=1.19.2",
     "numpy>=2.1.1",
     "soundfile>=0.12.1",
+    "sounddevice>=0.5.0",
     "nakdimon-ort>=0.1.5",
-    "piper-phonemize-cross>=1.2.1",
+    "piper-phonemize-fork>=1.2.0",
 ]
 
 [project.urls]
