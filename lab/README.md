@@ -2,7 +2,7 @@
 
 Dataset https://openslr.elda.org/134/
 
-Training recipe https://github.com/mush42/optispeec
+Training recipe https://github.com/thewh1teagle/optispeech/tree/he-v1
 
 Model based on vitshttps://github.com/jaywalnut310/vits
 
