@@ -1,15 +1,15 @@
 from pathlib import Path
 import json
 
-config_path = Path(__file__).parent / 'config.json'
-with open(config_path, encoding='utf-8') as f:
-    config = json.load(f)
-    SYMBOLS = config['symbols']
+CONFIG_PATH = Path(__file__).parent / 'config.json'
+with open(CONFIG_PATH, encoding='utf-8') as f:
+    CONFIG = json.load(f)
+    SYMBOLS = CONFIG['symbols']
    
 # Special symbols
-PAD = "_"
-BOS = "^"
-EOS = "$"
+PAD = CONFIG['PAD']
+BOS = CONFIG['BOS']
+EOS = CONFIG['EOS']
 
 # Special symbol ids
 PAD_ID = SYMBOLS.index(PAD)
