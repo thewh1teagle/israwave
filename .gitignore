@@ -19,3 +19,4 @@ espeak-ng-data/
 *.mp4
 *.onnx*
 *.7z
+*.txt
