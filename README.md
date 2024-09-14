@@ -27,3 +27,15 @@ You also need [`israwave.onnx`](https://github.com/thewh1teagle/israwave/release
 ## Examples
 
 See [examples](examples)
+
+## Dataset
+
+The model trained on [saspeech gold standard](https://openslr.org/134/).
+
+## Thanks
+
+Thanks to [Kan11](https://www.kan.org.il/) and [Shaul](https://www.kan.org.il/authors/%D7%A9%D7%90%D7%95%D7%9C-%D7%90%D7%9E%D7%A1%D7%98%D7%A8%D7%93%D7%9E%D7%A1%D7%A7%D7%99/) for providing the dataset.
+
+Thanks to [elazarg](https://github.com/elazarg) for sharing the [Nakdimon](https://github.com/elazarg/nakdimon) diacritics model, which was instrumental in our project.
+
+For [mush42](https://github.com/mush42) for their excellent TTS training recipe.
