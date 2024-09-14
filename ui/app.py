@@ -5,7 +5,7 @@ wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/nakdimon.
 wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/espeak-ng-data.tar.gz
 tar xf espeak-ng-data.tar.gz
 
-python3 main.py
+python3 app.py
 """
 
 import gradio as gr
