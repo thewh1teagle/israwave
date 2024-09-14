@@ -20,13 +20,13 @@ if __name__ == '__main__':
     niqqud_model_path, text_input, out_path = sys.argv[3], sys.argv[4], sys.argv[5]
     
     if Path(text_input).exists():
-        text_input = open(text_input, encoding='utf-8').read()
+        text = open(text_input, encoding='utf-8').read()
     
     segment_extractor = SegmentExtractor()
     speech_model = IsraWave(speech_model_path, espeak_data_path)
     niqqud_model = Nakdimon(niqqud_model_path)
     
-    text = niqqud_model.compute(text_input)
+    text = niqqud_model.compute(text)
     
     waveforms = []
     sample_rate = None
