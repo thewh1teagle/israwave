@@ -13,8 +13,6 @@ from israwave import IsraWave
 from nakdimon_ort import Nakdimon
 from israwave.segment import SegmentExtractor
 import numpy as np
-import soundfile as sf
-import io
 
 segment_extractor = SegmentExtractor()
 speech_model = IsraWave('israwave.onnx', 'espeak-ng-data')
@@ -31,13 +29,8 @@ def create_audio(text: str, rate, pitch, energy):
     return np.concatenate(waveforms), speech_model.sample_rate
 
 def create(text, rate, pitch, energy):
-    audio, sample_rate = create_audio(text, rate, pitch, energy)
-    
-    # Convert numpy array to WAV format in memory using soundfile
-    with io.BytesIO() as buf:
-        sf.write(buf, audio, sample_rate, format='WAV')
-        buf.seek(0)
-        return buf.read()
+    samples, sample_rate = create_audio(text, rate, pitch, energy)
+    return (sample_rate, samples)
 
 
 with gr.Blocks(theme=gr.themes.Soft()) as demo:
