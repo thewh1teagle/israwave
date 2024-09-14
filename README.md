@@ -12,6 +12,14 @@ Mission to create a Hebrew TTS model as powerful and user-friendly as WaveNet
 
 See example audio [here](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/israwave.wav)
 
+## Setup
+
+```console
+pip install -U israwave
+```
+
+You also need [`israwave.onnx`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/israwave.onnx), [`espeak-ng-data`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/espeak-ng-data.tar.gz), and [`nakdimon.onnx`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/nakdimon.onnx). Please see examples.
+
 ## Examples
 
 See [examples](examples)
