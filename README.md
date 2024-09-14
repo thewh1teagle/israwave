@@ -10,7 +10,7 @@ Mission to create a Hebrew TTS model as powerful and user-friendly as WaveNet
 
 ## Play with it!
 
-You can play with it on our [hugginface card](https://huggingface.co/spaces/thewh1teagle/tts-with-israwave)
+You can play with it on [HuggingFace Space](https://huggingface.co/spaces/thewh1teagle/tts-with-israwave)
 
 ## Samples
 
