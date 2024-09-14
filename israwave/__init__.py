@@ -42,6 +42,7 @@ class IsraWave:
             )
 
         self.model = Model(model_path, espeak_data_path)
+        self.sample_rate = self.model.sample_rate
     
     def create(self, text, d_factor = 1.0, p_factor = 1.0, e_factor = 1.0):
         """create speech waveform

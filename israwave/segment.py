@@ -1,10 +1,18 @@
 import re
 from dataclasses import dataclass
+import numpy as np
 
 @dataclass
 class Segment:
     text: str
     next_pause: float
+    
+    def create_silence(self, sample_rate: int):
+        """
+        Return numpy array of zeros in size of the duration
+        """
+        num_samples = int(self.next_pause * sample_rate)
+        return np.zeros(num_samples, dtype=np.float32)
 
 class SegmentExtractor:
     def __init__(self, default_pause: float = 0.02, question_pause: float = 0.05, period_pause: float = 0.05, new_line_pause = 0.3):
