@@ -17,10 +17,10 @@ from pathlib import Path
 
 if __name__ == '__main__':
     speech_model_path, espeak_data_path = sys.argv[1], sys.argv[2]
-    niqqud_model_path, text_input, out_path = sys.argv[3], sys.argv[4], sys.argv[5]
+    niqqud_model_path, text, out_path = sys.argv[3], sys.argv[4], sys.argv[5]
     
-    if Path(text_input).exists():
-        text = open(text_input, encoding='utf-8').read()
+    if Path(text).exists():
+        text = open(text, encoding='utf-8').read()
     
     segment_extractor = SegmentExtractor()
     speech_model = IsraWave(speech_model_path, espeak_data_path)
