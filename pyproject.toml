@@ -2,7 +2,7 @@
 name = "israwave"
 description = "Hebrew text to speech on the edge"
 readme = "README.md"
-version = "0.1.1"
+version = "0.1.2"
 authors = [{ name = "thewh1teagle" }]
 dependencies = [
     "onnxruntime>=1.19.2",
