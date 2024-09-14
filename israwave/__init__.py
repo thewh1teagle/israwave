@@ -44,23 +44,23 @@ class IsraWave:
         self.model = Model(model_path, espeak_data_path)
         self.sample_rate = self.model.sample_rate
     
-    def create(self, text, d_factor = 1.0, p_factor = 1.0, e_factor = 1.0):
+    def create(self, text, rate = 1.0, pitch = 1.0, energy = 1.0):
         """create speech waveform
 
         Args:
             text str: _description_
-            d_factor (float, optional): Control rate. Defaults to 1.0.
-            p_factor (float, optional): Control pitch. Defaults to 1.0.
-            e_factor (float, optional): Control energy. Defaults to 1.0.
+            rate (float, optional): Control rate. Defaults to 1.0.
+            pitch (float, optional): Control pitch. Defaults to 1.0.
+            energy (float, optional): Control energy. Defaults to 1.0.
 
         Returns:
             _type_: _description_
         """
         inputs = self.model.prepare_input(
             text,
-            d_factor=d_factor,
-            p_factor=p_factor,
-            e_factor=e_factor,
+            d_factor=rate,
+            p_factor=pitch,
+            e_factor=energy,
             lang='he'
         )
         outputs = self.model.synthesise(inputs)
