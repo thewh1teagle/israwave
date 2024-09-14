@@ -7,9 +7,9 @@ class Segment:
     text: str
     next_pause: float
     
-    def create_silence(self, sample_rate: int):
+    def create_pause(self, sample_rate: int):
         """
-        Return numpy array of zeros in size of the duration
+        Return array of zeros (silence) with size of the next_pause
         """
         num_samples = int(self.next_pause * sample_rate)
         return np.zeros(num_samples, dtype=np.float32)

@@ -34,7 +34,7 @@ if __name__ == '__main__':
     for segment in segment_extractor.extract_segments(text):
         waveform = speech_model.create(segment.text)
         waveforms.append(waveform.samples)
-        silence = segment.create_silence(waveform.sample_rate)
+        silence = segment.create_pause(waveform.sample_rate)
         waveforms.append(silence)
 
     # Join segments into a single waveform
