@@ -35,7 +35,10 @@ def create(text, rate, pitch, energy):
 
 with gr.Blocks(theme=gr.themes.Soft()) as demo:
     # Centered title
-    gr.Markdown("<h1 style='text-align: center;'>IsraWave</h1>")
+    gr.Markdown("""
+    <h1 style='text-align: center;'>IsraWave</h1>
+    <p style='text-align: center;'>Text-to-Speech model for Hebrew</p>
+    """)
     
     # Use Textarea with RTL direction
     text = gr.TextArea(label="text", lines=4, elem_id="rtl_textarea", value='זה כיף להזמין דברים באינטרנט, אבל הרבה פחות כיף לחכות ולחכות עד שהם יגיעו אלינו. אז מה בעצם עובר על החבילות בדרך הארוכה עד לבית שלנו? והאם אפשר לגרום לכך שהן יגיעו מהר יותר? ')
@@ -55,5 +58,9 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         font-size: 20px;
     }
     """
+    
+    gr.Markdown("""
+    <p style='text-align: center;'><a href='https://github.com/thewh1teagle/israwave' target='_blank'>Israwave on Github</a></p>
+    """)
 
 demo.launch()
