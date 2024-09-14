@@ -32,7 +32,7 @@ if __name__ == '__main__':
     waveforms = []
     sample_rate = None
     
-    for i, segment in enumerate(segment_extractor.extract_segments(text)):
+    for segment in segment_extractor.extract_segments(text):
         waveform = speech_model.create(segment.text)
         if sample_rate is None:
             sample_rate = waveform.sample_rate

@@ -14,21 +14,19 @@ class SegmentExtractor:
         self.new_line_pause = new_line_pause
     
     def extract_segments(self, text: str):
-        segments: list[Segment] = []
         sentences = re.split(r'([.?!:\n])', text)
         for i in range(0, len(sentences) - 1, 2):
             sentence = sentences[i].strip()
             punctuation = sentences[i + 1]
             if sentence:  # Ensure the sentence is not empty
                 if punctuation == '.':
-                    segments.append(Segment(text=f"{sentence}{punctuation}", next_pause=self.period_pause))
+                    yield Segment(text=f"{sentence}{punctuation}", next_pause=self.period_pause)
                 elif punctuation == '?':
-                    segments.append(Segment(text=f"{sentence}{punctuation}", next_pause=self.question_pause))
+                    yield Segment(text=f"{sentence}{punctuation}", next_pause=self.question_pause)
                 elif punctuation == '\n':
-                    segments.append(Segment(text=f"{sentence}{punctuation}.", next_pause=self.new_line_pause))
+                    yield Segment(text=f"{sentence}{punctuation}.", next_pause=self.new_line_pause)
                 else:
-                    segments.append(Segment(text=f"{sentence}{punctuation}", next_pause=self.default_pause))
+                    yield Segment(text=f"{sentence}{punctuation}", next_pause=self.default_pause)
         last_sentence = sentences[-1].strip()
         if last_sentence:
-            segments.append(Segment(text=f"{last_sentence}.", next_pause=self.default_pause))
-        return segments
+            yield Segment(text=f"{last_sentence}.", next_pause=self.default_pause)
