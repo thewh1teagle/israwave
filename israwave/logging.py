@@ -4,7 +4,7 @@ Provide a way to enable logging by setting LOG_LEVEL environment variable
 import logging
 import os
 
-def init_logging():
+def setup_logging():
     # Set default logging level to WARNING if LOG_LEVEL is not set
     log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
     

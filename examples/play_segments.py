@@ -1,8 +1,9 @@
 """
 pip install -U israwave
 wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/israwave.onnx
-wget https://github.com/thewh1teagle/optispeech/releases/download/v0.1.0/espeak-ng-data.7z
-wget https://github.com/thewh1teagle/nakdimon-ort/releases/download/v0.1.0/nakdimon.onnx
+wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/nakdimon.onnx
+wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/espeak-ng-data.tar.gz
+tar xf espeak-ng-data.tar.gz
 
 python play_segments.py israwave.onnx espeak-ng-data nakdimon.onnx 'הי, אתם על חיות כיס, אני שאול אמסטרדמסקי. אתם האזנתם לחיות כיס, הפודקאסט הכלכלי של כאן. עורך חיות כיס הוא תומר מיכלזון. במערכת חיות כיס תמצאו גם את צליל אברהם.'
 """

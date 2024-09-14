@@ -20,3 +20,4 @@ espeak-ng-data/
 *.onnx*
 *.7z
 *.txt
+*.tar.gz

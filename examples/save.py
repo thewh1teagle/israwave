@@ -1,8 +1,9 @@
 """
 pip install -U israwave
 wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/israwave.onnx
-wget https://github.com/thewh1teagle/optispeech/releases/download/v0.1.0/espeak-ng-data.7z
-wget https://github.com/thewh1teagle/nakdimon-ort/releases/download/v0.1.0/nakdimon.onnx
+wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/nakdimon.onnx
+wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/espeak-ng-data.tar.gz
+tar xf espeak-ng-data.tar.gz
 
 python save.py israwave.onnx espeak-ng-data nakdimon.onnx "תגידו, גנבו לכם פעם את האוטו ופשוט ידעתם שאין טעם להגיש תלונה במשטרה?" output.wav
 """
