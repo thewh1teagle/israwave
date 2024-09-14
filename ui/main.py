@@ -1,5 +1,5 @@
 """
-pip install gradio israwave
+pip install -r requirements.txt
 wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/israwave.onnx
 wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/nakdimon.onnx
 wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/espeak-ng-data.tar.gz

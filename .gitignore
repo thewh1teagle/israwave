@@ -21,3 +21,4 @@ espeak-ng-data/
 *.7z
 *.txt
 *.tar.gz
+!requirements.txt
