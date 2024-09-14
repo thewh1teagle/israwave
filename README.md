@@ -6,10 +6,11 @@ Mission to create a Hebrew TTS model as powerful and user-friendly as WaveNet
 
 - Generate sentence in less than 1ms on CPU
 - Powerful text processor by espeak-ng
-
-
-
 - Support for SSML (soon)
+
+## Play with it!
+
+You can play with it on our [hugginface card](https://huggingface.co/spaces/thewh1teagle/tts-with-israwave)
 
 ## Samples
 
