@@ -14,7 +14,7 @@ You can play with it on [HuggingFace Space](https://huggingface.co/spaces/thewh1
 
 ## Samples
 
-<video src="https://github.com/user-attachments/assets/919cb5ed-ba2c-453b-8241-47d75fe3bd08" width="100" height="100"></video>
+https://github.com/user-attachments/assets/d7185899-d67d-4110-ae67-bb7d00a91925
 
 ## Setup
 
