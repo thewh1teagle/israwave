@@ -10,6 +10,7 @@ python3 app.py
 
 import gradio as gr
 from israwave import IsraWave
+from israwave.helpers import text_has_niqqud
 from nakdimon_ort import Nakdimon
 from israwave.segment import SegmentExtractor
 import numpy as np
@@ -19,7 +20,8 @@ speech_model = IsraWave('israwave.onnx', 'espeak-ng-data')
 niqqud_model = Nakdimon('nakdimon.onnx')
 
 def create_audio(text: str, rate, pitch, energy):
-    text = niqqud_model.compute(text)
+    if not text_has_niqqud(text):
+        text = niqqud_model.compute(text)
     waveforms = []
     for segment in segment_extractor.extract_segments(text):
         waveform = speech_model.create(segment.text, rate=rate, pitch=pitch, energy=energy)
