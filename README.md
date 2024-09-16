@@ -22,6 +22,7 @@ https://github.com/user-attachments/assets/3212a800-406f-4d79-8aa1-d814eed815d6
 pip install -U israwave
 ```
 
+Some dependencies are only available on MacOSX and windows in python version 3.12.
 You also need [`israwave.onnx`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/israwave.onnx), [`espeak-ng-data`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/espeak-ng-data.tar.gz), and [`nakdimon.onnx`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/nakdimon.onnx). Please see examples.
 
 ## Examples
