@@ -29,7 +29,7 @@ class SegmentExtractor:
         Used later to add pauses when speaking
         """
         logging.debug(f'extract segments from {text}')
-        sentences = re.split(r'([.?!:–\n\-])', text)
+        sentences = re.split(r'([•.?!:–\n\-])', text)
         for i in range(0, len(sentences) - 1, 2):
             sentence = sentences[i].strip()
             punctuation = sentences[i + 1]
@@ -42,6 +42,8 @@ class SegmentExtractor:
                     yield Segment(text=f"{sentence}{punctuation}.", next_pause=self.new_line_pause)
                 elif punctuation == '-':
                     yield Segment(text=f"{sentence}{punctuation}", next_pause=self.hyphen_pause)
+                elif punctuation == '•':
+                    yield Segment(text=f"{sentence}{punctuation}.", next_pause=self.new_line_pause)
                 else:
                     yield Segment(text=f"{sentence}{punctuation}", next_pause=self.default_pause)
         last_sentence = sentences[-1].strip()
