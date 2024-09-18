@@ -19,7 +19,7 @@ Model based on vitshttps://github.com/jaywalnut310/vits
 6. Prepare feature extractor configurations for dataset (44.10khz)
 7. Prepare main train config for Hebrew with correct langauge code and feature extractor (44.10khz)
 8. Prepare `TextProcessor` config and disable normalization (important!!) since it remove / change diacritics. kept ipa tokenizer.
-9. Execute preprocess to create folders for train/validation and `npz` files and `json` files. `npz` contains sort of waveform and `json` contains phonemes IDS (converted from IPA)
+9. Execute preprocess to create folders for train/validation and `npz` files and `json` files. `npz` contains sort of waveform and `json` contains phonemes IDs (converted from IPA)
 10. Prepare `data_statistics` from dataset and set in train config.
 11. Start the train. it should store by default 10 last checkpoints including metadata / how many steps (and overwrite in cycle)
 
