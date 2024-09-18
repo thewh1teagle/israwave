@@ -30,12 +30,17 @@ class IPATokenizer:
         text = self.preprocess_text(text, language)
         # Phonemize        
         phonemes = phonemize_espeak(text, language, data_path=self.espeak_data_path)
-        logging.debug(f"phonemes: {phonemes} text: {text}")
         return phonemes, text
     
     def tokenize(self, text, language):
-        phonemes, normalized_text = self.phonemize_text(text, language)
-        phonemes = [phoneme for sentence_phonemes in phonemes for phoneme in sentence_phonemes]
-        phonemes = list(self.collapse_whitespace("".join(phonemes)))
-        phoneme_ids = phonemes_to_ids(phonemes)
+        try:
+            # Accept phonemes directly
+            phoneme_ids, normalized_text = phonemes_to_ids(text), self.preprocess_text(text, 'he')
+        except:
+            # Create phoenems
+            phonemes, normalized_text = self.phonemize_text(text, language)
+            phonemes = [phoneme for sentence_phonemes in phonemes for phoneme in sentence_phonemes]
+            phonemes = list(self.collapse_whitespace("".join(phonemes)))
+            phoneme_ids = phonemes_to_ids(phonemes)
+            logging.debug(f"phonemes: {''.join(phonemes)} text: {text}")
         return phoneme_ids, normalized_text
