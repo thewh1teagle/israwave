@@ -3,10 +3,7 @@ from .model import Model
 import soundfile as sf
 import sounddevice as sd
 import os
-from israwave.logging import setup_logging
 from pathlib import Path
-
-setup_logging()
 
 class WaveForm:
     def __init__(self, samples: FloatArray, sample_rate: int) -> None:

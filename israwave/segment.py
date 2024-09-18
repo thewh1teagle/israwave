@@ -1,6 +1,7 @@
 import re
 from dataclasses import dataclass
 import numpy as np
+from israwave.logging import log
 
 @dataclass
 class Segment:
@@ -15,18 +16,20 @@ class Segment:
         return np.zeros(num_samples, dtype=np.float32)
 
 class SegmentExtractor:
-    def __init__(self, default_pause: float = 0.02, question_pause: float = 0.05, period_pause: float = 0.05, new_line_pause = 0.3):
+    def __init__(self, default_pause: float = 0.05, question_pause: float = 0.05, dot_pause: float = 0.05, new_line_pause = 0.05, hyphen_pause = 0.01):
         self.default_pause = default_pause
         self.question_pause = question_pause
-        self.period_pause = period_pause
+        self.period_pause = dot_pause
         self.new_line_pause = new_line_pause
+        self.hyphen_pause = hyphen_pause
     
     def extract_segments(self, text: str):
         """
         Break the text into segment items. eg. on '?' or '.' or '!' or '\n'
         Used later to add pauses when speaking
         """
-        sentences = re.split(r'([.?!:\n])', text)
+        log.debug(f'extract segments from {text}')
+        sentences = re.split(r'([•.?!:–\n\-])', text)
         for i in range(0, len(sentences) - 1, 2):
             sentence = sentences[i].strip()
             punctuation = sentences[i + 1]
@@ -36,6 +39,10 @@ class SegmentExtractor:
                 elif punctuation == '?':
                     yield Segment(text=f"{sentence}{punctuation}", next_pause=self.question_pause)
                 elif punctuation == '\n':
+                    yield Segment(text=f"{sentence}{punctuation}.", next_pause=self.new_line_pause)
+                elif punctuation == '-':
+                    yield Segment(text=f"{sentence}{punctuation}", next_pause=self.hyphen_pause)
+                elif punctuation == '•':
                     yield Segment(text=f"{sentence}{punctuation}.", next_pause=self.new_line_pause)
                 else:
                     yield Segment(text=f"{sentence}{punctuation}", next_pause=self.default_pause)
