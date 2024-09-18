@@ -38,6 +38,7 @@ Notes:
 Notes for improving:
 
 - Better diacritics model is needed
+- Download espeak-ng, compile and improve with `cmake --build build && ./build/src/espeak-ng -v "he" --ipa 'אוֹקֵיי אַתָּה מְדַבֵּר מַמָּשׁ טוֹב.'`
 
 
 ## Config
