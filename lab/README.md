@@ -9,7 +9,7 @@ Model based on vitshttps://github.com/jaywalnut310/vits
 10% kept for validation.
 
 
-## Summarize of steps I did to make this actually work in Hebrew:
+## Summary of Steps Taken to Make This Work in Hebrew
 
 1. Download [saspeech dataset](https://openslr.elda.org/134/) (4 hours, diactirized audio with 2-15s audio files)
 2. Improve espeak-ng phonemes in [this PR](https://github.com/espeak-ng/espeak-ng/pull/1983)
@@ -37,6 +37,8 @@ Notes for improving:
 
 Better diacritics model is needed
 
+
+## Config
 
 _configs/data/feature_extractor/44.10khz.yaml_
 
