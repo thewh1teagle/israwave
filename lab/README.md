@@ -25,19 +25,19 @@ Model based on vitshttps://github.com/jaywalnut310/vits
 
 Notes:
 
-Since Hebrew is complex language I used diacritics in this model. I created [nakdimon-ort](https://github.com/thewh1teagle/nakdimon-ort) for fast diacritics inferencing based on nakdimon model.
+- Since Hebrew is complex language I used diacritics in this model. I created [nakdimon-ort](https://github.com/thewh1teagle/nakdimon-ort) for fast diacritics inferencing based on nakdimon model.
 
-It took me 3-4 days to reach 1M steps on rtx3090 batch size of 4/8/16 depending on VRAM. Better to use 8-16 batch size - less noisy.
+- It took me 3-4 days to reach 1M steps on rtx3090 batch size of 4/8/16 depending on VRAM. Better to use 8-16 batch size - less noisy.
 
-You can stop the training and convert to onnx and inference with this repository to check that it's correct.
+- You can stop the training and convert to onnx and inference with this repository to check that it's correct.
 
-You can resume training from saved `ckpt` file in logs folder.
+- You can resume training from saved `ckpt` file in logs folder.
 
-Use [tensorboard](https://www.tensorflow.org/tensorboard) to see information while training running.
+- Use [tensorboard](https://www.tensorflow.org/tensorboard) to see information while training running.
 
 Notes for improving:
 
-Better diacritics model is needed
+- Better diacritics model is needed
 
 
 ## Config
