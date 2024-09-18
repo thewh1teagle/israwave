@@ -1,6 +1,6 @@
 import re
 from .symbols import phonemes_to_ids
-import logging
+from israwave.logging import log
 
 WHITESPACE_RE = re.compile(r"\s+")
 
@@ -42,5 +42,5 @@ class IPATokenizer:
             phonemes = [phoneme for sentence_phonemes in phonemes for phoneme in sentence_phonemes]
             phonemes = list(self.collapse_whitespace("".join(phonemes)))
             phoneme_ids = phonemes_to_ids(phonemes)
-            logging.debug(f"phonemes: {''.join(phonemes)} text: {text}")
+            log.debug(f"phonemes: {''.join(phonemes)} text: {text}")
         return phoneme_ids, normalized_text

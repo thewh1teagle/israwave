@@ -4,9 +4,11 @@ Provide a way to enable logging by setting LOG_LEVEL environment variable
 import logging
 import os
 
-def setup_logging():
-    # Set default logging level to WARNING if LOG_LEVEL is not set
-    log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
+# Set default logging level to WARNING if LOG_LEVEL is not set
+log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
+logger = logging.getLogger(__package__)
+logger.setLevel(level=getattr(logging, log_level, logging.WARNING))
+# Setup logging to stdout
+logging.basicConfig()
     
-    # Configure logging
-    logging.basicConfig(level=getattr(logging, log_level, logging.WARNING))
+log = logging.getLogger(__package__)

@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass
 import numpy as np
-import logging
+from israwave.logging import log
 
 @dataclass
 class Segment:
@@ -28,7 +28,7 @@ class SegmentExtractor:
         Break the text into segment items. eg. on '?' or '.' or '!' or '\n'
         Used later to add pauses when speaking
         """
-        logging.debug(f'extract segments from {text}')
+        log.debug(f'extract segments from {text}')
         sentences = re.split(r'([•.?!:–\n\-])', text)
         for i in range(0, len(sentences) - 1, 2):
             sentence = sentences[i].strip()
