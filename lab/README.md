@@ -31,6 +31,8 @@ It took me 3-4 days to reach 1M steps on rtx3090 batch size of 4/8/16 depending 
 
 You can stop the training and convert to onnx and inference with this repository to check that it's correct.
 
+You can resume training from saved `ckpt` file in logs folder.
+
 Use [tensorboard](https://www.tensorflow.org/tensorboard) to see information while training running.
 
 Notes for improving:
