@@ -1,5 +1,2 @@
-# pre-release version of gradio 5.0 (better streaming support)
-gradio==5.0.0b1
+gradio
 israwave
-# backwards compatibility bug in fastapi fixed in next gradio version
-fastapi==0.112.4

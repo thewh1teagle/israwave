@@ -14,8 +14,6 @@ from israwave.helpers import text_has_niqqud
 from nakdimon_ort import Nakdimon
 from israwave.segment import SegmentExtractor
 import numpy as np
-import soundfile as sf
-import tempfile
 
 segment_extractor = SegmentExtractor()
 speech_model = IsraWave("israwave.onnx", "espeak-ng-data")
@@ -27,17 +25,11 @@ def create(text: str, rate, pitch, energy):
         text = niqqud_model.compute(text)
     waveforms = []
     for segment in segment_extractor.extract_segments(text):
-        waveform = speech_model.create(
-            segment.text, rate=rate, pitch=pitch, energy=energy
-        )
+        waveform = speech_model.create(segment.text, rate=rate, pitch=pitch, energy=energy)
         waveforms.append(waveform.samples)
         silence = segment.create_pause(waveform.sample_rate)
         waveforms.append(silence)
-    waveform = np.concatenate(waveforms)
-
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as temp_file:
-        sf.write(temp_file.name, waveform, speech_model.sample_rate, format="ogg")
-        return temp_file.name
+    return speech_model.sample_rate, np.concatenate(waveforms)
 
 
 with gr.Blocks(theme=gr.themes.Soft()) as demo:
@@ -58,8 +50,8 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
     pitch = gr.Slider(0.1, 10, label="pitch", value=1.0)
     energy = gr.Slider(0.1, 10, label="energy", value=1.0)
 
-    button = gr.Button("Create", elem_id="create_button")
-    output = gr.Audio(autoplay=True)
+    button = gr.Button("Create")
+    output = gr.Audio()
 
     button.click(fn=create, inputs=[text, rate, pitch, energy], outputs=output)
 
