@@ -10,7 +10,7 @@ python3 app.py
 
 import gradio as gr
 from israwave import IsraWave
-from israwave.helpers import text_has_niqqud
+from israwave.helpers import text_has_niqqud, float_to_int16
 from nakdimon_ort import Nakdimon
 from israwave.segment import SegmentExtractor
 import numpy as np
@@ -29,7 +29,10 @@ def create(text: str, rate, pitch, energy):
         waveforms.append(waveform.samples)
         silence = segment.create_pause(waveform.sample_rate)
         waveforms.append(silence)
-    return speech_model.sample_rate, np.concatenate(waveforms)
+    waveform = np.concatenate(waveforms)
+    # Gradio expect int16
+    waveform = float_to_int16(waveform)
+    return speech_model.sample_rate, waveform
 
 
 with gr.Blocks(theme=gr.themes.Soft()) as demo:
