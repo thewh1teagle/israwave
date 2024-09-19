@@ -9,6 +9,6 @@ log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
 logger = logging.getLogger(__package__)
 logger.setLevel(level=getattr(logging, log_level, logging.WARNING))
 # Setup logging to stdout
-logging.basicConfig()
+logging.basicConfig(format='%(levelname)s [%(filename)s:%(lineno)d] %(message)s')
     
 log = logging.getLogger(__package__)
