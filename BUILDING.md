@@ -26,3 +26,11 @@ See https://bootphon.github.io/phonemizer/install.html
 _Enable Logging_
 
 Set `LOG_LEVEL=DEBUG` environment variable.
+
+## Gotchas
+
+On Linux you will need PortAudio and LibSound packages
+
+```console
+sudo apt install -y libasound-dev libportaudio2
+```
