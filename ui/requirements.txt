@@ -1,2 +1,2 @@
 gradio==4.44.0
-israwave==0.1.5
+israwave==0.1.6
