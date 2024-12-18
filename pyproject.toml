@@ -1,27 +1,2 @@
-[project]
-name = "israwave"
-description = "Hebrew text to speech on the edge"
-readme = "README.md"
-version = "0.1.6"
-authors = [{ name = "thewh1teagle" }]
-dependencies = [
-    "onnxruntime>=1.19.2",
-    "numpy>=2.1.1",
-    "soundfile>=0.12.1",
-    "sounddevice>=0.5.0",
-    "nakdimon-ort>=0.1.5",
-    'piper-phonemize-fork>=1.2.0 ; platform_system != "Linux"',
-    'piper-phonemize-cross>=1.2.1 ; platform_system == "Linux"',
-]
-
-[project.urls]
-home = "https://github.com/thewh1teagle/israwave"
-
-[project.optional-dependencies]
-dev = ["tox", "pre-commit", "bump2version"]
-test = ["pytest"]
-build = ["twine", "build"]
-
-[build-system]
-build-backend = "flit_core.buildapi"
-requires = ["flit_core >=3.2,<4"]
+[tool.uv.workspace]
+members = ["israwave"]

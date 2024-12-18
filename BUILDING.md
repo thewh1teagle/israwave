@@ -2,9 +2,11 @@
 
 ## Build
 
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation)
+
 ```console
-python -m pip install -U build
-python -m build
+uv sync
+uv build
 ```
 
 ## Publish
@@ -12,13 +14,17 @@ python -m build
 _Get token from https://pypi.org/manage/account/token/ _
 
 ```console
-python -m pip install -U twine build
-
-python -m build
-python -m twine upload dist/*
+uv publish
 ```
 
 _Add `--repository testpypi` to upload to test repository_
+
+## Run example
+
+```console
+uv sync
+uv run examples/play.py
+```
 
 
 See https://bootphon.github.io/phonemizer/install.html

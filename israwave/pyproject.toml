@@ -1,0 +1,22 @@
+[project]
+name = "israwave"
+version = "0.1.0"
+description = "Hebrew text to speech on the edge"
+readme = "../README.md"
+authors = [
+    { name = "thewh1teagle", email = "61390950+thewh1teagle@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "onnxruntime>=1.19.2",
+    "numpy>=2.1.1",
+    "soundfile>=0.12.1",
+    "sounddevice>=0.5.0",
+    "nakdimon-ort>=0.1.5",
+    'piper-phonemize-fork>=1.2.0 ; platform_system != "Linux"',
+    'piper-phonemize-cross>=1.2.1 ; platform_system == "Linux"',
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
