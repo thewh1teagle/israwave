@@ -1,6 +1,6 @@
 [project]
 name = "israwave"
-version = "0.1.0"
+version = "0.1.7"
 description = "Hebrew text to speech on the edge"
 readme = "../README.md"
 authors = [
