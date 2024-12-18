@@ -14,7 +14,7 @@ uv build
 _Get token from https://pypi.org/manage/account/token/ _
 
 ```console
-uv publish
+UV_PUBLISH_TOKEN="your pypi token" uv publish
 ```
 
 _Add `--repository testpypi` to upload to test repository_
