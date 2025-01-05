@@ -22,8 +22,6 @@ https://github.com/user-attachments/assets/3212a800-406f-4d79-8aa1-d814eed815d6
 pip install -U israwave
 ```
 
-Some dependencies are only available in python version 3.12. We recommend use [uv](https://docs.astral.sh/uv/getting-started/installation).
-
 - You also need to place the files [`israwave.onnx`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/israwave.onnx), [`nakdimon.onnx`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/nakdimon.onnx), and extracted [`espeak-ng-data`](https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/espeak-ng-data.tar.gz) in the project folder. 
 - We recommend use [uv](https://docs.astral.sh/uv/getting-started/installation) for Python.
 - Python 3.12 is recommended. (`uv init -p 3.12`)

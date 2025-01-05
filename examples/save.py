@@ -5,7 +5,7 @@ wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/nakdimon.
 wget https://github.com/thewh1teagle/israwave/releases/download/v0.1.0/espeak-ng-data.tar.gz
 tar xf espeak-ng-data.tar.gz
 
-python save.py israwave.onnx espeak-ng-data nakdimon.onnx 'תגידו, גנבו לכם פעם את האוטו ופשוט ידעתם שאין טעם להגיש תלונה במשטרה?' output.wav
+python examples/save.py israwave.onnx espeak-ng-data nakdimon.onnx 'תגידו, גנבו לכם פעם את האוטו ופשוט ידעתם שאין טעם להגיש תלונה במשטרה?' output.wav
 """
 
 import sys
