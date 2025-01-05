@@ -1,12 +1,16 @@
 import re
 from .symbols import phonemes_to_ids
 from israwave.logging import log
+from phonemizer.backend.espeak.wrapper import EspeakWrapper
+import phonemizer
+import espeakng_loader
 
 WHITESPACE_RE = re.compile(r"\s+")
 
 class IPATokenizer:
     def __init__(self, espeak_data_path = None) -> None:
-        self.espeak_data_path = espeak_data_path
+        EspeakWrapper.set_library(espeakng_loader.get_library_path())
+        EspeakWrapper.set_data_path(espeak_data_path or espeakng_loader.get_data_path())
     
     def preprocess_text(self, text, _language):
         return self.collapse_whitespace(text)
@@ -16,20 +20,10 @@ class IPATokenizer:
         return text
     
     def phonemize_text(self, text: str, language: str) -> str:
-        try:
-            from piper_phonemize import phonemize_espeak
-        except ImportError:
-            raise ImportError(
-                "piper-phonemize package is needed for the IPA tokenizer.\n"
-                "pip install piper-phonemize\n"
-                "or build it yourself from the following repository:\n"
-                "https://github.com/rhasspy/piper-phonemize"
-            )
-
         # Preprocess
         text = self.preprocess_text(text, language)
-        # Phonemize        
-        phonemes = phonemize_espeak(text, language, data_path=self.espeak_data_path)
+        # Phonemize
+        phonemes = phonemizer.phonemize(text, language, preserve_punctuation=True, with_stress=True)        
         return phonemes, text
     
     def tokenize(self, text, language):
